@@ -14,7 +14,19 @@ import {
   Submenu,
   MenuItemGroup,
   MenuItem,
+  Breadcrumb,
+  BreadcrumbItem,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
 } from "element-ui";
+Vue.use(Dropdown);
+Vue.use(DropdownMenu);
+Vue.use(DropdownItem);
+
+Vue.use(Breadcrumb);
+Vue.use(BreadcrumbItem);
+
 Vue.use(Menu);
 Vue.use(Submenu);
 Vue.use(MenuItemGroup);

@@ -1,10 +1,12 @@
 <template>
   <el-container>
-    <el-aside width="200px">
+    <el-aside width="auto">
       <common-aside />
     </el-aside>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header>
+        <common-header />
+      </el-header>
       <el-main>
         <router-view />
       </el-main>
@@ -14,10 +16,12 @@
 
 <script>
 import CommonAside from "views/common/CommonAside";
+import CommonHeader from "views/common/CommonHeader";
 export default {
   name: "App",
   components: {
     CommonAside,
+    CommonHeader,
   },
 };
 </script>
@@ -26,18 +30,13 @@ export default {
 .el-container {
   height: 100%;
 }
-.el-header,
-.el-footer {
-  background-color: #b3c0d1;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
+.el-header {
+  background-color: #333;
 }
 .el-main {
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 160px;
 }
 
 body > .el-container {

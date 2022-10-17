@@ -9,6 +9,7 @@
     @close="handleClose"
     :collapse="isCollapse"
   >
+    <h3 v-if="!isCollapse">协同办公系统</h3>
     <el-menu-item
       v-for="item in noChildren"
       :key="item.label"
@@ -31,6 +32,7 @@
         v-for="child in item.children"
         :key="child.label"
         :index="child.index"
+        style="cursor: pointer"
         @click.native="menuClick(child)"
       >
         <span slot="title">{{ child.label }}</span>
@@ -40,10 +42,11 @@
 </template>
 
 <script>
+//导入vueX的辅助函数
+import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      isCollapse: false,
       menus: [
         {
           path: "/",
@@ -74,18 +77,18 @@ export default {
           index: "33",
         },
         {
-          path: "/attManager",
-          name: "attManager",
-          label: "考勤管理",
-          icon: "time",
-          index: "44",
-        },
-        {
           path: "/approver",
           name: "approver",
           label: "请假审批",
           icon: "edit",
           index: "11",
+        },
+        {
+          path: "/attManager",
+          name: "attManager",
+          label: "考勤管理",
+          icon: "time",
+          index: "44",
         },
         {
           path: "/apply",
@@ -124,6 +127,7 @@ export default {
     hasChildren() {
       return this.menus.filter((m) => m.children);
     },
+    ...mapState(["isCollapse"]),
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -132,10 +136,12 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
+    ...mapMutations(["tabChange"]),
     menuClick(item) {
       this.$router.replace({
         path: item.path,
       });
+      this.tabChange(item);
     },
   },
 };
@@ -148,5 +154,10 @@ export default {
 }
 .el-menu {
   height: 100%;
+  h3 {
+    color: white;
+    line-height: 40px;
+    text-align: center;
+  }
 }
 </style>
