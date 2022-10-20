@@ -6,9 +6,10 @@
         style="margin-left: 15px"
         separator-class="el-icon-arrow-right"
       >
-        <el-breadcrumb-item v-for="(item, index) in list" :key="index">{{
-          item.label
-        }}</el-breadcrumb-item>
+        <!-- 面包屑 -->
+        <el-breadcrumb-item v-for="(item, index) in list" :key="index">
+          {{ item.label }}
+        </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="r-content">

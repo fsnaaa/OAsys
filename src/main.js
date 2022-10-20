@@ -19,7 +19,21 @@ import {
   Dropdown,
   DropdownMenu,
   DropdownItem,
+  Tag,
+  Row,
+  Col,
+  Card,
+  Table,
+  TableColumn,
 } from "element-ui";
+Vue.use(Table);
+Vue.use(TableColumn);
+
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Card);
+
+Vue.use(Tag);
 Vue.use(Dropdown);
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);

@@ -101,6 +101,7 @@ export default {
           label: "我的考勤",
           icon: "star-on",
           name: "myAttendance",
+          path: "/other",
           index: "4",
           children: [
             {

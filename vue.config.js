@@ -11,7 +11,8 @@ module.exports = defineConfig({
             'network':'@/network',
             'router':'@/router',
             'store':'@/store',
-            'views':'@/views'
+            'views':'@/views',
+            'api':'@/api'
          }
       }
   }
