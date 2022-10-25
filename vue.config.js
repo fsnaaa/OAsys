@@ -12,7 +12,8 @@ module.exports = defineConfig({
             'router':'@/router',
             'store':'@/store',
             'views':'@/views',
-            'api':'@/api'
+            'api':'@/api',
+            'config':'@/config'
          }
       }
   }

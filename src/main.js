@@ -25,7 +25,35 @@ import {
   Card,
   Table,
   TableColumn,
+  Dialog,
+  Form,
+  FormItem,
+  Input,
+  Option,
+  DatePicker,
+  TimePicker,
+  Switch,
+  CheckboxGroup,
+  Checkbox,
+  RadioGroup,
+  Radio,
+  Pagination
+  // MessageBox
 } from "element-ui";
+Vue.use(Pagination);
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Input);
+Vue.use(Option);
+Vue.use(DatePicker);
+Vue.use(TimePicker);
+Vue.use(CheckboxGroup);
+Vue.use(Switch);
+Vue.use(Checkbox);
+Vue.use(RadioGroup);
+Vue.use(Radio);
+
+Vue.use(Dialog);
 Vue.use(Table);
 Vue.use(TableColumn);
 
@@ -52,6 +80,8 @@ Vue.use(Aside);
 Vue.use(Header);
 Vue.use(Main);
 
+import "api/mock"
+// Vue.prototype.$confirm=MessageBox.confirm
 Vue.config.productionTip = false;
 
 new Vue({

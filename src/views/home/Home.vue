@@ -71,7 +71,7 @@
 
 <script>
 import * as eCharts from "echarts"
-import { productDate, orderDate,orderStaticLine,orderStaticBar,orderStaticPie } from "api/HomeDate.js";
+import { productDate, orderDate,orderStaticLine,orderStaticBar,orderStaticPie } from "api/homeData.js";
 export default {
   data() {
     return {
