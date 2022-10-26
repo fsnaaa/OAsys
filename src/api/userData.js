@@ -35,3 +35,12 @@ export function removeUser(data){
         data
     })
 }
+
+//登录验证
+export function userLogin(data){
+    return HttpRequest.request({
+        url:"/user/userLogin",
+        method:"post",
+        data
+    })
+}

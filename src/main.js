@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import "api/mock";
 
 import {
   Button,
@@ -37,8 +38,9 @@ import {
   Checkbox,
   RadioGroup,
   Radio,
-  Pagination
+  Pagination,
   // MessageBox
+  Message
 } from "element-ui";
 Vue.use(Pagination);
 Vue.use(Form);
@@ -52,23 +54,18 @@ Vue.use(Switch);
 Vue.use(Checkbox);
 Vue.use(RadioGroup);
 Vue.use(Radio);
-
 Vue.use(Dialog);
 Vue.use(Table);
 Vue.use(TableColumn);
-
 Vue.use(Row);
 Vue.use(Col);
 Vue.use(Card);
-
 Vue.use(Tag);
 Vue.use(Dropdown);
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
-
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
-
 Vue.use(Menu);
 Vue.use(Submenu);
 Vue.use(MenuItemGroup);
@@ -79,10 +76,26 @@ Vue.use(Container);
 Vue.use(Aside);
 Vue.use(Header);
 Vue.use(Main);
-
-import "api/mock"
 // Vue.prototype.$confirm=MessageBox.confirm
+Vue.prototype.$message=Message;
+
 Vue.config.productionTip = false;
+
+//导入Cookie插件
+import Cookie from "js-cookie";
+
+//设置全局路由守卫
+router.beforeEach((to, from, next) => {
+  //console.log("1  >> " + to.path + " " + from.path);
+  const token = Cookie.get("token");
+  if (!token && to.path != "/login") {
+    next({
+      path: "/login",
+    });
+  } else {
+    next();
+  }
+});
 
 new Vue({
   router,

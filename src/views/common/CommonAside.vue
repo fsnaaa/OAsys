@@ -49,7 +49,7 @@ export default {
     return {
       menus: [
         {
-          path: "/",
+          path: "/home",
           name: "home",
           label: "首页",
           icon: "s-home",

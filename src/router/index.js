@@ -2,15 +2,16 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 // 解决 vue-router 升级导致的 Uncaught(in promise)
-const originalPush = VueRouter.prototype.push
-VueRouter.prototype.push = function push (location) {
-  return originalPush.call(this, location).catch(err => err)
-}
 
-const originalReplace = VueRouter.prototype.replace
-VueRouter.prototype.replace = function replace (location) {
-  return originalReplace.call(this, location).catch(err => err)
-}
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch((err) => err);
+};
+
+const originalReplace = VueRouter.prototype.replace;
+VueRouter.prototype.replace = function replace(location) {
+  return originalReplace.call(this, location).catch((err) => err);
+};
 
 //注册路由
 Vue.use(VueRouter);
@@ -25,11 +26,16 @@ const Approver = () => import("views/approver/Approver");
 const Setting = () => import("views/setting/Setting");
 const AttendanceList = () => import("views/attendanceList/AttendanceList");
 const Calender = () => import("views/calender/Calender");
+const Login = () => import("views/login/Login");
 //配置路由映射
 const routes = [
   {
+    path: "/login",
+    component: Login,
+  },
+  {
     path: "/",
-    redirect: "/main",
+    redirect: "/login",
   },
   {
     path: "/main",
