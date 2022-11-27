@@ -14,7 +14,7 @@
       v-for="item in noChildren"
       :key="item.label"
       :index="item.index"
-      @click="menuClick(item)"
+      @click.native="menuClick(item)"
     >
       <i :class="'el-icon-' + item.icon"></i>
       <span slot="title">{{ item.label }}</span>
@@ -43,90 +43,29 @@
 
 <script>
 //导入vueX的辅助函数
+import Cookie from "js-cookie";
 import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      menus: [
-        {
-          path: "/home",
-          name: "home",
-          label: "首页",
-          icon: "s-home",
-          index: "1",
-        },
-        {
-          path: "/user",
-          name: "user",
-          label: "用户管理",
-          icon: "user",
-          index: "2",
-        },
-        {
-          path: "/dept",
-          name: "dept",
-          label: "部门管理",
-          icon: "tickets",
-          index: "3",
-        },
-        {
-          path: "/setting",
-          name: "setting",
-          label: "考勤设置",
-          icon: "setting",
-          index: "33",
-        },
-        {
-          path: "/approver",
-          name: "approver",
-          label: "请假审批",
-          icon: "edit",
-          index: "11",
-        },
-        {
-          path: "/attManager",
-          name: "attManager",
-          label: "考勤管理",
-          icon: "time",
-          index: "44",
-        },
-        {
-          path: "/apply",
-          name: "apply",
-          label: "请假申请",
-          icon: "message",
-          index: "7",
-        },
-        {
-          label: "我的考勤",
-          icon: "star-on",
-          name: "myAttendance",
-          path: "/other",
-          index: "4",
-          children: [
-            {
-              path: "/attendanceList",
-              name: "attendanceList",
-              label: "考勤列表",
-              index: "5",
-            },
-            {
-              path: "/calender",
-              name: "calender",
-              label: "考勤日历",
-              index: "6",
-            },
-          ],
-        },
-      ],
+      
     };
   },
   computed: {
     noChildren() {
-      return this.menus.filter((m) => !m.children);
+      return this.dynamicMenus.filter((m) => !m.children||m.children.length<=0);
     },
     hasChildren() {
-      return this.menus.filter((m) => m.children);
+      return this.dynamicMenus.filter((m) => m.children&&m.children.length>0);
+    },
+    dynamicMenus(){
+      //读取保存的菜单
+      const menus= Cookie.get("menus");
+      if(!menus){
+        return []
+      }
+      return JSON.parse(menus);
+   
     },
     ...mapState(["isCollapse"]),
   },

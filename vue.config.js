@@ -13,6 +13,7 @@ module.exports = defineConfig({
             'store':'@/store',
             'views':'@/views',
             'api':'@/api',
+            'utils':'@/utils',
             'config':'@/config'
          }
       }

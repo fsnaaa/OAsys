@@ -31,8 +31,13 @@ class HttpRequest{
     }
     getBaseConfig() {
         const config = {
-            baseUrl: this.baseURL,
-            header: {}
+            baseURL: this.baseURL,
+            withCredentials: true, 
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                // "Origin":"http://39.108.167.127:8844/"
+                "Origin":"https://localhost:44315/"
+            }
         }
       
         return config
@@ -45,6 +50,24 @@ class HttpRequest{
        
         this.interceptors(axiosObj);
 
+        return axiosObj(options);
+    }
+    //发送网络请求 
+    //options:普通请求内容 url methods 参数
+    //headers:特殊头部配置
+    request2(options,headers){
+        //创建axios对象
+        const axiosObj = axios.create();
+        //合并用户请求的配置和公共配置
+        options = {...options,...this.getBaseConfig()};
+        console.log(options)
+        //合并普通配置和上传需求的头部配置
+        const keys=Object.keys(headers);
+        keys.forEach(key=>{
+            options["headers"][key]=headers[key];
+        })
+
+        this.interceptors(axiosObj);
         return axiosObj(options);
     }
 }

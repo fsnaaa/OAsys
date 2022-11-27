@@ -17,15 +17,15 @@ VueRouter.prototype.replace = function replace(location) {
 Vue.use(VueRouter);
 
 const Main = () => import("views/Main");
-const Home = () => import("views/home/Home");
-const User = () => import("views/user/User");
-const Dept = () => import("views/dept/Dept");
-const Apply = () => import("views/apply/Apply");
-const AttManager = () => import("views/attManager/AttManager");
-const Approver = () => import("views/approver/Approver");
-const Setting = () => import("views/setting/Setting");
-const AttendanceList = () => import("views/attendanceList/AttendanceList");
-const Calender = () => import("views/calender/Calender");
+// const Home = () => import("views/home/Home");
+// const User = () => import("views/user/User");
+// const Dept = () => import("views/dept/Dept");
+// const Apply = () => import("views/apply/Apply");
+// const AttManager = () => import("views/attManager/AttManager");
+// const Approver = () => import("views/approver/Approver");
+// const Setting = () => import("views/setting/Setting");
+// const AttendanceList = () => import("views/attendanceList/AttendanceList");
+// const Calender = () => import("views/calender/Calender");
 const Login = () => import("views/login/Login");
 //配置路由映射
 const routes = [
@@ -40,44 +40,45 @@ const routes = [
   {
     path: "/main",
     redirect: "/home",
+    name:"Main",
     component: Main,
     children: [
-      {
-        path: "/home",
-        component: Home,
-      },
-      {
-        path: "/user",
-        component: User,
-      },
-      {
-        path: "/dept",
-        component: Dept,
-      },
-      {
-        path: "/attManager",
-        component: AttManager,
-      },
-      {
-        path: "/apply",
-        component: Apply,
-      },
-      {
-        path: "/approver",
-        component: Approver,
-      },
-      {
-        path: "/setting",
-        component: Setting,
-      },
-      {
-        path: "/attendanceList",
-        component: AttendanceList,
-      },
-      {
-        path: "/calender",
-        component: Calender,
-      },
+      // {
+      //   path: "/home",
+      //   component: Home,
+      // },
+      // {
+      //   path: "/user",
+      //   component: User,
+      // },
+      // {
+      //   path: "/dept",
+      //   component: Dept,
+      // },
+      // {
+      //   path: "/attManager",
+      //   component: AttManager,
+      // },
+      // {
+      //   path: "/apply",
+      //   component: Apply,
+      // },
+      // {
+      //   path: "/approver",
+      //   component: Approver,
+      // },
+      // {
+      //   path: "/setting",
+      //   component: Setting,
+      // },
+      // {
+      //   path: "/attendanceList",
+      //   component: AttendanceList,
+      // },
+      // {
+      //   path: "/calender",
+      //   component: Calender,
+      // },
     ],
   },
 ];

@@ -2,46 +2,22 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import "api/mock";
+//import "api/mock";
 
-import {
-  Button,
-  Select,
-  Container,
-  Aside,
-  Header,
-  Main,
-  Menu,
-  Submenu,
-  MenuItemGroup,
-  MenuItem,
-  Breadcrumb,
-  BreadcrumbItem,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Tag,
-  Row,
-  Col,
-  Card,
-  Table,
-  TableColumn,
-  Dialog,
-  Form,
-  FormItem,
-  Input,
-  Option,
-  DatePicker,
-  TimePicker,
-  Switch,
-  CheckboxGroup,
-  Checkbox,
-  RadioGroup,
-  Radio,
-  Pagination,
+import {Button,Select,Container,Aside,
+  Header,Main,Menu,Submenu,MenuItemGroup,
+  MenuItem,Breadcrumb,BreadcrumbItem,
+  Dropdown,DropdownMenu,DropdownItem,Tag,
+  Row,Col,Card,Table,TableColumn,Dialog,Form,
+  FormItem,Input,Option,DatePicker,TimePicker,
+  Switch,CheckboxGroup,Checkbox,RadioGroup,
+  Radio,Pagination,Message,DescriptionsItem,
+  Descriptions,Upload
   // MessageBox
-  Message
 } from "element-ui";
+Vue.use(Upload);
+Vue.use(Descriptions);
+Vue.use(DescriptionsItem);
 Vue.use(Pagination);
 Vue.use(Form);
 Vue.use(FormItem);

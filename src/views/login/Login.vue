@@ -4,6 +4,7 @@
     label-width="80px"
     :rules="rules"
     :model="formLogin"
+    status-icon
     ref="login"
   >
     <h3 class="login-title">系统登录</h3>
@@ -13,16 +14,16 @@
         placeholder="请输入用户名"
       ></el-input>
     </el-form-item>
-    <el-form-item label="密码" prop="loginPws">
+    <el-form-item label="密码" prop="loginPwd">
       <el-input
         type="password"
-        v-model="formLogin.loginPws"
+        v-model="formLogin.loginPwd"
         placeholder="请输入密码"
       ></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submitForm">登录</el-button>
-      <el-button @click="resetForm()">重置</el-button>
+      <el-button @click="resetForm">重置</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -35,13 +36,13 @@ export default {
     return {
       formLogin: {
         loginName: "",
-        loginPws: "",
+        loginPwd: "",
       },
       rules: {
         loginName: [
           { required: true, message: "请输入用户名", trigger: "blur" },
         ],
-        loginPws: [
+        loginPwd: [
           { required: true, message: "请输入密码", trigger: "change" },
         ],
       },
@@ -51,15 +52,52 @@ export default {
     submitForm() {
       this.$refs.login.validate((v) => {
         if (v) {
+            //调用登录验证网络请求
             userLogin(this.formLogin).then(res=>{
-                if(res.data.code){
-                    Cookie.set("token", res.data.token);
+              console.log(res)
+                //根据条件判断是否登录成功
+                if(res.data.code==200){
+                    //将mock传递过来的数据保存在cookie中 cookie只能保存字符串
+                    //console.log(res.data.menus);
+                    Cookie.set("menus",JSON.stringify(res.data.menus));
+                    Cookie.set("token", res.data.token,{
+                      sameSite:'none',
+                      secure:true
+                    });
+                    //console.log(res.data.menus);
+
+                    //设置"动态路由"
+                    //根据菜单循环生成路由记录
+                    res.data.menus.forEach(menu=>{
+                      //console.log(menu);
+                      if(menu.children&&menu.children.length>0){
+                          //循环路由子菜单 生成子路由记录
+                          menu.children.forEach(child=>{
+                            let routeChild={
+                              //导航路径
+                              path:child.path,
+                              component:()=>import(`../${child.url}`)
+                            }
+                            this.$router.addRoute("Main",routeChild);
+                          })
+                      }
+                      else{
+                        let routeItem={
+                          //导航路径
+                          path:menu.path,
+                          component:()=>import(`../${menu.url}`)
+                        }
+                        this.$router.addRoute("Main",routeItem);
+                      }
+                    })
+
                     //打开首页
                     this.$router.replace({
                         path: "/home",
                     });
                 }
                 else{
+                    //登录失败提示信息
                     this.$message.error(res.data.message);
                 }
             })

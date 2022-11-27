@@ -35,6 +35,11 @@ const store = new Vuex.Store({
       //根据序号移除对应tag
       state.list.splice(tagIndex, 1);
     },
+    //移除tag
+    closeAllTag(state) {
+      //根据序号移除对应tag
+      state.list.splice(1, state.list.length-1);
+    },
   },
   actions: {},
 });
